@@ -23,6 +23,6 @@ To get an interactive instance of pyspark running in the image, which includes t
 (*Note* that the $SPARK_HOME environment variable is available)
 
 ## example1.py
-Based on the databricks Graphframes tutorial found at https://docs.databricks.com/spark/latest/graph-analysis/graphframes/graph-analysis-tutorial.html#build-the-graph this python script should be run interactively from within the interactive pyspark session started in the previous step
+Based on the databricks Graphframes tutorial found at https://docs.databricks.com/spark/latest/graph-analysis/graphframes/graph-analysis-tutorial.html this python script should be run interactively from within the interactive pyspark session started in the previous step
 
 *N.B.* you might need to cut down the file /data/examples/201508_trip_data.csv to a few tens of thousands of trips, to avoid the image running out of memory (or if you are smarter at using docker than I am, provide more resources to the image)
