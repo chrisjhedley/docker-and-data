@@ -1,0 +1,36 @@
+/* Run `pyspark --packages graphframes:graphframes:0.6.0-spark2.3-s_2.11` */
+
+/* Might need to run check this: https://getthekt.com/unable-import-graphframes-pyspark/ */
+
+pyspark --packages graphframes:graphframes:0.6.0-spark2.3-s_2.11
+
+vertices = spark.read.csv("/data/examples/people.csv", header=True)
+
+edges = spark.read.csv("/data/examples/relationships.csv", header=True)
+
+from graphframes import *
+g = GraphFrame(vertices, edges)
+
+bikeStations = spark.read.csv("/data/examples/201508_station_data.csv", header=True)
+tripData = spark.read.csv("/data/examples/201508_trip_data.csv", header=True)
+
+from graphframes import *
+
+stationVertices = bikeStations.withColumnRenamed("name", "id").distinct()
+tripEdges = tripData.withColumnRenamed("Start Station", "src").withColumnRenamed("End Station", "dst")
+
+stationGraph = GraphFrame(stationVertices, tripEdges)
+
+stationGraph.vertices.count()
+stationGraph.edges.count()
+tripData.count()
+
+/* PAGE RANK */
+results = stationGraph.pageRank(resetProbability=0.15, maxIter=10)
+
+results.vertices.show()
+
+results.vertices.orderBy("pagerank").show()
+
+/* TOP TRIPS */
+stationGraph.edges.groupBy("src", "dst").count().orderBy("count").desc.limit(10)

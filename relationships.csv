@@ -1,0 +1,9 @@
+src,dst,relationship
+a,b,friend
+b,c,follow
+c,b,follow
+f,c,follow
+e,f,follow
+e,d,friend
+d,a,friend
+a,e,friend
