@@ -1,4 +1,4 @@
-#Apache Spark Graphframes and Docker
+# Apache Spark Graphframes and Docker
 This project allows you build and run a Docker Image that contains a version of Apache Spark and the necessary dependencies to allow you to run Spark Graphframes using pyspark.
 
 ## Building the Image
