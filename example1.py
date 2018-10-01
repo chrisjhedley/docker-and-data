@@ -22,3 +22,28 @@ results = stationGraph.pageRank(resetProbability=0.15, maxIter=10)
 results.vertices.show()
 
 results.vertices.orderBy("pagerank").show()
+
+#IN DEGREES
+
+from pyspark.sql.functions import desc
+
+inDeg = stationGraph.inDegrees
+inDeg.orderBy(desc("inDegree")).show(5, False)
+
+#OUT DEGREES
+
+outDeg = stationGraph.outDegrees
+outDeg.orderBy(desc("outDegree")).show(5, False)
+
+#DEGREE RATIO
+degreeRatio = inDeg.join(outDeg, "id") \
+.selectExpr("id", "double(inDegree)/double(outDegree) as degreeRatio")
+
+degreeRatio.orderBy(desc("degreeRatio")).show(10, False)
+
+degreeRatio.orderBy("degreeRatio").show(10, False)
+
+#MOTIF FINDING (p. 517)
+motifs = stationGraph.find("(a)-[ab]->(b); (b)-[bc]->(c); (c)-[ca]->(a)")
+
+from pyspark.sql.functions import expr
