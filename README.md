@@ -29,3 +29,25 @@ Based on the databricks Graphframes tutorial found at https://docs.databricks.co
 
 ## Useful way of binding ports and mounting a local folder:
 `docker run --rm -it -p 4040:4040 -v /Users/christopherjhedley/Spark-The-Definitive-Guide/data/flight-data/csv:/mnt/csv docker-and-data:latest`
+
+
+### Now you can find the Spark UI at http://localhost:4040
+
+## Getting stuff working using jupyter and the jupyter_dockerfile image:
+
+### Run a container interatively, something like:
+`docker run --rm -it -p 8888:8888 -p 4040:4040 -v /Users/christopherjhedley/Spark-The-Definitive-Guide/data/flight-data/csv:/mnt/csv jupyter_dockerfile:latest`
+
+(the above command assumes you have downloaded the github project associated with the 'Spark The Definitive Guide' book)
+
+### Attach a shell over the image, then run:
+`jupyter notebook --ip 0.0.0.0 --allow-root`
+
+### Copy the token from the output of the above command, open a browser and navigate to:
+`http://lodcalhost:8888/`
+
+### Enter the token you copied where asked and log into jupyter. Open a new Notebook and get started with pyspark using something like the following code:
+
+`from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.csv("/mnt/csv/2015-summary.csv", header=True)`
