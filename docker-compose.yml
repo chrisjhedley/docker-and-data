@@ -5,3 +5,12 @@ services:
     build: .
     ports:
       - "4040:4040"
+    command: tail -f /dev/null
+
+  notebook:
+    build: 
+      context: ./jupyter_dockerfile
+    ports:
+        - "8888:8888"
+    command: jupyter notebook --ip 0.0.0.0 --allow-root
+    

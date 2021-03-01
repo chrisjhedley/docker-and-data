@@ -41,10 +41,10 @@ Based on the databricks Graphframes tutorial found at https://docs.databricks.co
 (the above command assumes you have downloaded the github project associated with the 'Spark The Definitive Guide' book)
 
 ### Attach a shell over the image, then run:
-`jupyter notebook --ip 0.0.0.0 --allow-root`
+`jupyter notebook --ip 0.0.0.0 --allow-root --notebook-dir='/mnt/csv/'`
 
 ### Copy the token from the output of the above command, open a browser and navigate to:
-`http://lodcalhost:8888/`
+`http://localhost:8888/`
 
 ### Enter the token you copied where asked and log into jupyter. Open a new Notebook and get started with pyspark using something like the following code:
 

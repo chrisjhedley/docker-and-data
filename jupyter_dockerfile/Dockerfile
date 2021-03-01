@@ -6,7 +6,6 @@ RUN apt-get -y install software-properties-common
 
 # PYTHON
 RUN apt-get install python3
-
 RUN apt -y install python3-pip
 
 # JUPYTER
@@ -34,7 +33,6 @@ ENV PYTHONPATH $SPARK_HOME/python:/usr/bin/python
 ENV PYSPARK_DRIVER_PYTHON "jupyter"
 ENV PYSPARK_DRIVER_PYTHON_OPTS "notebook"
 ENV PYSPARK_PYTHON python3
-#ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/bin/
 
 #ENV PATH ${PATH}:${SPARK_HOME}:~/.local/bin:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin:${SPARK_HOME}/bin
 ENV PATH ${PATH}:${SPARK_HOME}:~/.local/bin:${SPARK_HOME}/bin
